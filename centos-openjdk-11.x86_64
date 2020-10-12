@@ -6,3 +6,4 @@ RUN yum -y update
 COPY ./jdk-11.0.1_linux /jdk-11.0.1_linux
 ENV JAVA_HOME /jdk-11.0.1_linux
 ENV PATH $JAVA_HOME/bin:$PATH
+RUN chmod -R 777 /jdk-11.0.1_linux

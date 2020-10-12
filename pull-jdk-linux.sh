@@ -4,5 +4,6 @@ basePath=$(pwd)
 if [ -d "./jdk-11.0.1_linux" ]; then
 git pull
 else
-git clone felix-huang@vs-ssh.visualstudio.com:v3/felix-huang/DevOps/jdk-11.0.1_linux
+git clone https://github.com/SZFelixHuang/jdk-11.0.1_linux.git
+git pull
 fi
