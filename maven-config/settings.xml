@@ -19,8 +19,8 @@
    	 <mirror>
        <id>ms-nexus</id>
        <mirrorOf>central</mirrorOf>
-       <name>MissionSky Repository</name>
-       <url>http://nexus.apps.missionsky.com/repository/maven-public/</url>
+       <name>Private Repository</name>
+       <url>http://nexus.apps.felix.com/repository/maven-public/</url>
      </mirror>
   </mirrors>
 
