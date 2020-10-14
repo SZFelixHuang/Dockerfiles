@@ -17,7 +17,7 @@
 
   <mirrors>
    	 <mirror>
-       <id>ms-nexus</id>
+       <id>private-nexus</id>
        <mirrorOf>central</mirrorOf>
        <name>Private Repository</name>
        <url>http://nexus.apps.felix.com/repository/maven-public/</url>
