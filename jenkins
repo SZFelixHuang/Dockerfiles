@@ -16,6 +16,7 @@ ARG agent_port=50000
 ARG JENKINS_HOME=/var/jenkins_home
 ARG REF=/usr/share/jenkins/ref
 ARG SCRIPTS=./jenkins-scripts
+ARG TINI=./tini
 
 ENV JENKINS_HOME $JENKINS_HOME
 ENV JENKINS_SLAVE_AGENT_PORT ${agent_port}
@@ -39,11 +40,11 @@ VOLUME $JENKINS_HOME
 RUN mkdir -p ${REF}/init.groovy.d
 
 # Use tini as subreaper in Docker container to adopt zombie processes
-ARG TINI_VERSION=v0.16.1
 COPY ${SCRIPTS}/tini_pub.gpg ${JENKINS_HOME}/tini_pub.gpg
-RUN curl -fsSL https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static-$(dpkg --print-architecture) -o /sbin/tini \
-  && curl -fsSL https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static-$(dpkg --print-architecture).asc -o /sbin/tini.asc \
-  && gpg --no-tty --import ${JENKINS_HOME}/tini_pub.gpg \
+COPY ${TINI}/tini-static-amd64 /sbin/tini
+COPY ${TINI}/tini-static-amd64.asc /sbin/tini.asc
+
+RUN gpg --no-tty --import ${JENKINS_HOME}/tini_pub.gpg \
   && gpg --verify /sbin/tini.asc \
   && rm -rf /sbin/tini.asc /root/.gnupg \
   && chmod +x /sbin/tini
