@@ -1,10 +1,9 @@
-FROM registry.felix.com/devops/centos-maven:3.6.3
+FROM registry.felix.com/devops/centos-git:latest
 
 MAINTAINER <felix_huang@outlook.com>
 
-RUN yum install -y epel-release && yum install -y git curl dpkg unzip which fontconfig dejavu-sans-fonts
-RUN yum curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | bash
-RUN yum install -y git-lfs
+
+RUN yum install -y epel-release && yum install -y curl dpkg unzip which fontconfig dejavu-sans-fonts
 RUN yum clean all
 
 ARG user=jenkins

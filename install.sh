@@ -9,5 +9,8 @@ docker push registry.felix.com/devops/centos8-openjdk:11
 docker build -t registry.felix.com/devops/centos-maven:3.6.3 -f centos-maven.3.6.3 .
 docker push  registry.felix.com/devops/centos-maven:3.6.3
 
+docker build -t registry.felix.com/devops/centos-git:latest -f centos-git .
+docker push  registry.felix.com/devops/centos-git:latest
+
 docker build -t registry.felix.com/devops/jenkins:latest -f jenkins .
 docker push  registry.felix.com/devops/jenkins:latest
