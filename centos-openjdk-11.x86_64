@@ -3,7 +3,4 @@ FROM registry.felix.com/devops/centos:8
 RUN yum -y install wget
 RUN wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-8.repo
 RUN yum -y update
-COPY ./jdk-11.0.1_linux /jdk-11.0.1_linux
-ENV JAVA_HOME /jdk-11.0.1_linux
-ENV PATH $JAVA_HOME/bin:$PATH
-RUN chmod -R 777 /jdk-11.0.1_linux
+RUN yum -y install java-11-openjdk.x86_64

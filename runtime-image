@@ -1,0 +1,8 @@
+FROM registry.felix.com/devops/centos:8
+
+RUN yum -y install java-11-openjdk.x86_64
+
+LABEL io.k8s.description="Java S2I Runtime" \
+      io.k8s.display-name="Java s2i runtime 1.0" \
+      io.openshift.tags="runtime,java"
+	 

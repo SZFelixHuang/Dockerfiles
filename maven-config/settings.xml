@@ -12,19 +12,15 @@
   </proxies>
 
   <servers>
-		<server>
-		  <id>private-nexus</id>
-		  <username>admin</username>
-		  <password>admin123</password>
-		</server>
+
   </servers>
 
   <mirrors>
    	 <mirror>
-       <id>private-nexus</id>
+       <id>ms-nexus</id>
        <mirrorOf>central</mirrorOf>
-       <name>Private Repository</name>
-       <url>http://nexus.apps.felix.com/repository/maven-public/</url>
+       <name>MissionSky Repository</name>
+       <url>http://nexus.apps.missionsky.com/repository/maven-public/</url>
      </mirror>
   </mirrors>
 
