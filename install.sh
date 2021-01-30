@@ -14,3 +14,5 @@ docker push  registry.felix.com/devops/jenkins:latest
 ./s2i-builder-image/install.sh
 docker build -t registry.felix.com/devops/runtime-image:latest -f runtime-image .
 docker push   registry.felix.com/devops/runtime-image:latest
+
+./mysql5.7/install.sh
