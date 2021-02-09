@@ -16,3 +16,4 @@ docker build -t registry.felix.com/devops/runtime-image:latest -f runtime-image 
 docker push   registry.felix.com/devops/runtime-image:latest
 
 ./mysql5.7/install.sh
+./openshift-router/install.sh
