@@ -152,7 +152,7 @@ listen stats
 frontend tcp-support
   bind :{{env "ROUTER_SERVICE_TCP_PORT" "5443"}}
   mode tcp
-  default_backend {{genBackendNamePrefix $cfg.TLSTermination}}:{{$cfgIdx}}
+  default_backend openshift_default
 
 frontend public
     {{ if eq "v4v6" $router_ip_v4_v6_mode }}
