@@ -147,12 +147,57 @@ listen stats
 
 {{ if .BindPorts -}}
 ##########################################################################
-# TCP support
+# TCP support start
 ##########################################################################
-frontend tcp-support
-  bind :{{env "ROUTER_SERVICE_TCP_PORT" "5443"}}
+frontend tcp
+
+ bind :::{{env "ROUTER_SERVICE_TCP_PORT" "5443"}}
+
+ mode tcp
+ 
+ {{- if ne (env "ROUTER_SYSLOG_ADDRESS") ""}}
+
+  option tcplog
+
+{{- end }} {{/* end if*/}}
+ 
+ default_backend tcp_backend
+ 
+backend tcp_backend
+
+  balance source
+
   mode tcp
-  default_backend openshift_default
+
+{{- range $cfg :=.State }}
+
+	{{- if isTrue (index $cfg.Annotations "haproxy.router.openshift.io/tcp-mode") }}
+
+		{{- range $serviceUnitName, $weight := $cfg.ServiceUnitNames }}
+
+			{{- with $serviceUnit := index $.ServiceUnits $serviceUnitName }}
+
+				  {{- range $idx, $endpoint := processEndpointsForAlias $cfg $serviceUnit (env "ROUTER_BACKEND_PROCESS_ENDPOINTS" "") }}
+
+						server {{$endpoint.ID}} {{$endpoint.IP}}:{{$endpoint.Port}} weight {{$weight}}
+
+						{{- if and (not $endpoint.NoHealthCheck) (gt $cfg.ActiveEndpoints 1) }} check inter {{firstMatch $timeSpecPattern (index $cfg.Annotations "router.openshift.io/haproxy.health.check.interval") (env "ROUTER_BACKEND_CHECK_INTERVAL") "5000ms"}}
+
+						{{- end }} {{/* end else no healthcheck */}}
+
+				  {{- end }} {{/* end rangeprocessEndpointsForAlias */}}
+				  
+			{{- end }} {{/* end with */}}
+
+		{{- end }} {{/*end range.ServiceUnitNames*/}}
+
+	{{- end }} {{/*end tcp port*/}}
+
+{{- end }} {{/*end range.state*/}}
+
+##########################################################################
+# TCP support end
+##########################################################################
 
 frontend public
     {{ if eq "v4v6" $router_ip_v4_v6_mode }}
