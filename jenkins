@@ -62,7 +62,7 @@ ARG JENKINS_PASSWORD
 ENV JENKINS_PASSWORD ${JENKINS_PASSWORD:-admin123}
 ENV JENKINS_OPTS --argumentsRealm.passwd.admin=${JENKINS_PASSWORD} --argumentsRealm.roles.user=admin --argumentsRealm.roles.admin=admin
 # jenkins.war checksum, download will be validated using it
-ARG JENKINS_SHA=1529d642e29e74f65369ff5611935e9361065d9e8f65344a64912c5660cc0781
+ARG JENKINS_SHA=1d4a7409784236a84478b76f3f2139939c0d7a3b4b2e53b1fcef400c14903ab6
 
 # Can be used to customize where jenkins.war get downloaded from
 ARG JENKINS_URL=http://updates.jenkins-ci.org/download/war/${JENKINS_VERSION}/jenkins.war
