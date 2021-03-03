@@ -23,3 +23,9 @@ docker pull seataio/seata-server:latest
 docker tag seataio/seata-server:latest registry.felix.com/seata/seata-server:latest
 
 docker push registry.felix.com/seata/seata-server:latest
+
+docker pull gitlab/gitlab-ce
+
+docker tag gitlab/gitlab-ce:latest registry.felix.com/devops/gitlab-ce:latest
+
+docker push registry.felix.com/devops/gitlab-ce:latest
