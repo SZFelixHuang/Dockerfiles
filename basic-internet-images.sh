@@ -29,3 +29,9 @@ docker pull gitlab/gitlab-ce
 docker tag gitlab/gitlab-ce:latest registry.felix.com/devops/gitlab-ce:latest
 
 docker push registry.felix.com/devops/gitlab-ce:latest
+
+docker pull docker.elastic.co/elasticsearch/elasticsearch:7.13.3
+
+docker tag docker.elastic.co/elasticsearch/elasticsearch:7.13.3 registry.felix.com/devops/elasticsearch:7.13.3
+
+docker push registry.felix.com/devops/elasticsearch:7.13.3
